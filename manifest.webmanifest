@@ -1,0 +1,17 @@
+{
+  "name": "Danielle's HOTWORX Tracker",
+  "short_name": "HOTWORX",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fffaf5",
+  "theme_color": "#ef6c33",
+  "description": "Danielle's private 8-week HOTWORX strength and progress tracker.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

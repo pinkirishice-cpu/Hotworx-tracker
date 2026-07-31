@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ef6c33">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="HOTWORX">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <title>Danielle's HOTWORX Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">8-WEEK TRAINING JOURNAL</p>
+        <h1>Danielle’s HOTWORX</h1>
+        <p class="subtitle">Fat loss • strength • consistency</p>
+      </div>
+      <div class="week-ring">
+        <span id="ringWeek">1</span>
+        <small>WEEK</small>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="App sections">
+      <button class="tab active" data-screen="today">Today</button>
+      <button class="tab" data-screen="progress">Progress</button>
+      <button class="tab" data-screen="checkin">Check-in</button>
+      <button class="tab" data-screen="settings">Settings</button>
+    </nav>
+
+    <main>
+      <section id="screen-today" class="screen active">
+        <div class="summary-grid">
+          <article class="stat-card">
+            <span>Workouts</span>
+            <strong id="totalDone">0/32</strong>
+          </article>
+          <article class="stat-card">
+            <span>This week</span>
+            <strong id="weekDone">0/4</strong>
+          </article>
+          <article class="stat-card">
+            <span>Completion</span>
+            <strong id="completionPct">0%</strong>
+          </article>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">CURRENT PLAN</p>
+              <h2 id="weekTitle">Week 1</h2>
+            </div>
+            <select id="weekSelect" aria-label="Choose week"></select>
+          </div>
+          <div class="progress-track"><div id="weekBar" class="progress-fill"></div></div>
+        </section>
+
+        <div id="workoutCards" class="workout-stack"></div>
+      </section>
+
+      <section id="screen-progress" class="screen">
+        <section class="panel">
+          <p class="eyebrow">STRENGTH PROGRESS</p>
+          <h2>Latest weights</h2>
+          <div id="strengthGrid" class="strength-grid"></div>
+        </section>
+
+        <section class="panel">
+          <p class="eyebrow">8-WEEK OVERVIEW</p>
+          <h2>Workout completion</h2>
+          <div id="weekOverview" class="overview-list"></div>
+        </section>
+      </section>
+
+      <section id="screen-checkin" class="screen">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">WEEKLY CHECK-IN</p>
+              <h2 id="checkinWeekLabel">Week 1</h2>
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <label>Weight
+              <input id="weight" type="number" step="0.1" placeholder="lb">
+            </label>
+            <label>Waist
+              <input id="waist" type="number" step="0.1" placeholder="in">
+            </label>
+            <label>Hips
+              <input id="hips" type="number" step="0.1" placeholder="in">
+            </label>
+            <label>Oura readiness
+              <input id="oura" type="number" min="0" max="100" placeholder="0–100">
+            </label>
+          </div>
+
+          <label>Biggest win
+            <textarea id="win" rows="3" placeholder="What felt stronger or easier?"></textarea>
+          </label>
+          <label>Next week’s focus
+            <textarea id="focus" rows="3" placeholder="Choose one realistic intention"></textarea>
+          </label>
+        </section>
+      </section>
+
+      <section id="screen-settings" class="screen">
+        <section class="panel">
+          <p class="eyebrow">YOUR DATA</p>
+          <h2>Backup & restore</h2>
+          <p class="help">Your entries save automatically on this device. Export a backup occasionally, especially before changing phones or clearing browser data.</p>
+          <div class="button-stack">
+            <button id="exportBtn" class="primary">Export backup</button>
+            <label class="secondary file-label">Import backup
+              <input id="importInput" type="file" accept="application/json">
+            </label>
+            <button id="resetBtn" class="danger">Reset all data</button>
+          </div>
+          <p id="status" class="status" aria-live="polite"></p>
+        </section>
+
+        <section class="panel install-panel">
+          <p class="eyebrow">INSTALL ON IPHONE</p>
+          <h2>Add to Home Screen</h2>
+          <ol>
+            <li>Open this app in Safari.</li>
+            <li>Tap the Share button.</li>
+            <li>Choose <strong>Add to Home Screen</strong>.</li>
+            <li>Tap <strong>Add</strong>.</li>
+          </ol>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <template id="workoutTemplate">
+    <article class="workout-card">
+      <div class="workout-head">
+        <div>
+          <p class="eyebrow workout-number"></p>
+          <h3 class="workout-title"></h3>
+        </div>
+        <label class="complete-toggle">
+          <input type="checkbox" class="day-complete">
+          <span>Complete</span>
+        </label>
+      </div>
+
+      <label>Class
+        <select class="class-select"></select>
+      </label>
+
+      <div class="exercise-list"></div>
+
+      <div class="field-grid compact">
+        <label>Difficulty
+          <input class="difficulty" type="number" min="1" max="5" placeholder="1–5">
+        </label>
+        <label>Energy
+          <input class="energy" type="number" min="1" max="10" placeholder="1–10">
+        </label>
+        <label>Water
+          <input class="water" type="number" placeholder="oz">
+        </label>
+        <label>Calories
+          <input class="calories" type="number" placeholder="HOTWORX">
+        </label>
+      </div>
+
+      <label>Victory today
+        <textarea class="victory" rows="2" placeholder="What went well?"></textarea>
+      </label>
+
+      <label class="increase-row">
+        <input type="checkbox" class="increase">
+        <span>Increase weight next time</span>
+      </label>
+    </article>
+  </template>
+
+  <template id="exerciseTemplate">
+    <div class="exercise-row">
+      <div class="exercise-copy">
+        <strong class="exercise-name"></strong>
+        <span class="exercise-target"></span>
+      </div>
+      <input class="exercise-weight" type="number" step="0.5" placeholder="Weight">
+      <input class="exercise-reps" type="text" placeholder="Reps/time">
+      <label class="mini-check"><input class="exercise-done" type="checkbox"><span>Done</span></label>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

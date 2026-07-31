@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#211c19"/>
+  <circle cx="256" cy="256" r="170" fill="none" stroke="#ef6c33" stroke-width="28"/>
+  <path d="M154 276h54l24-82 47 142 26-82h53" fill="none" stroke="#fffaf5" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="256" y="420" text-anchor="middle" font-family="-apple-system,Arial" font-size="48" font-weight="700" fill="#fffaf5">HOTWORX</text>
+</svg>
